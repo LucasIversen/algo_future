@@ -12,7 +12,7 @@ const Quiz = (props: QuizProps) => {
 
   const addAnswer = (answer: string) => {
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < props.questions.length) {
+    if (nextQuestion < props.questions?.length) {
       setCurrentQuestion(nextQuestion);
       props.addAnswer(answer);
     } else {
