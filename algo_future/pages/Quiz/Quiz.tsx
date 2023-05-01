@@ -13,26 +13,29 @@ const Quiz = (props: QuizProps) => {
   const addAnswer = (answer: string) => {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < props.questions?.length) {
-      setCurrentQuestion?.(nextQuestion);
-      props.addAnswer?.(answer);
+      setCurrentQuestion(nextQuestion);
+      props.addAnswer(answer);
     } else {
-      props.addAnswer?.(answer);
-      props.setSiteState?.("result");
+      props.addAnswer(answer);
+      props.setSiteState("result");
     }
   };
+
+  if (!props.questions) return <div>Loading...</div>;
+
   return (
     <div className="app">
       <h2>{props.questions[currentQuestion].question}</h2>
-      <button onClick={() => addAnswer?.("a")}>
+      <button onClick={() => addAnswer("a")}>
         {props.questions[currentQuestion]?.answer_a}
       </button>
-      <button onClick={() => addAnswer?.("b")}>
+      <button onClick={() => addAnswer("b")}>
         {props.questions[currentQuestion]?.answer_b}
       </button>
-      <button onClick={() => addAnswer?.("c")}>
+      <button onClick={() => addAnswer("c")}>
         {props.questions[currentQuestion]?.answer_c}
       </button>
-      <button onClick={() => addAnswer?.("d")}>
+      <button onClick={() => addAnswer("d")}>
         {props.questions[currentQuestion]?.answer_d}
       </button>
     </div>
