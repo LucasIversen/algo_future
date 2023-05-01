@@ -24,16 +24,16 @@ const Quiz = (props: QuizProps) => {
     <div className="app">
       <h2>{props.questions[currentQuestion].question}</h2>
       <button onClick={() => addAnswer("a")}>
-        {props.questions[currentQuestion].answer_a}
+        {props.questions[currentQuestion]?.answer_a}
       </button>
       <button onClick={() => addAnswer("b")}>
-        {props.questions[currentQuestion].answer_b}
+        {props.questions[currentQuestion]?.answer_b}
       </button>
       <button onClick={() => addAnswer("c")}>
-        {props.questions[currentQuestion].answer_c}
+        {props.questions[currentQuestion]?.answer_c}
       </button>
       <button onClick={() => addAnswer("d")}>
-        {props.questions[currentQuestion].answer_d}
+        {props.questions[currentQuestion]?.answer_d}
       </button>
     </div>
   );
