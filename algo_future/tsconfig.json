@@ -18,6 +18,12 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/mongo/questions.js",
+    "lib/mongo/index.ts"
+  ],
   "exclude": ["node_modules"]
 }
