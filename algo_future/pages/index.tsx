@@ -42,7 +42,8 @@ const Home = (props: Props) => {
 
 export async function getServerSideProps() {
   try {
-    let response = await fetch("http://localhost:3000/api/getQuizzes");
+    //let response = await fetch("http://localhost:3000/api/getQuizzes");
+    let response = await fetch("https://algo-future.vercel.app/api/getQuizzes");
     let quizzes = await response.json();
 
     return {
