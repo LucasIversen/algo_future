@@ -33,6 +33,10 @@ const Home = (props: Props) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  if (!quizzes) {
+    return <div>Loading...</div>;
+  }
+
   return <Application windowSize={windowSize} quizzes={quizzes} />;
 };
 
