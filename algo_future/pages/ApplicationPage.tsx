@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Job, Friends, Love, Question, QuizType } from "./questions";
+import { Job, Friends, Love, Question, QuizType } from "./index";
 import StartPage from "./StartPage/StartPage";
 import PickQuiz from "./PickQuiz/PickQuiz";
 import Quiz from "./Quiz/Quiz";
