@@ -13,17 +13,17 @@ const Result = (props: ResultProps) => {
   };
 
   const procentage_a =
-    props.answers.filter((answer) => answer === "a").length /
-    props.answers.length;
+    props.answers?.filter((answer) => answer === "a").length /
+    props.answers?.length;
   const procentage_b =
-    props.answers.filter((answer) => answer === "b").length /
-    props.answers.length;
+    props.answers?.filter((answer) => answer === "b").length /
+    props.answers?.length;
   const procentage_c =
-    props.answers.filter((answer) => answer === "c").length /
-    props.answers.length;
+    props.answers?.filter((answer) => answer === "c").length /
+    props.answers?.length;
   const procentage_d =
-    props.answers.filter((answer) => answer === "d").length /
-    props.answers.length;
+    props.answers?.filter((answer) => answer === "d").length /
+    props.answers?.length;
 
   return (
     <div className="result_container">
