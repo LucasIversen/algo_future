@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Question } from "../questions";
+import { Question } from "../index";
 
 interface QuizProps {
   setSiteState: (siteState: string) => void;
