@@ -65,7 +65,7 @@ const Application = (props: ApplicationProps) => {
   };
 
   const getCurrentPage = () => {
-    if (quizzes.length === 0) return <div>Loading...</div>;
+    if (!quizzes) return <div>Loading...</div>;
 
     switch (siteState) {
       case "start": {
