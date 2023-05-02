@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Job, Friends, Love, Question, QuizType } from "./index";
+import { Question, QuizType } from "./index";
 import StartPage from "./StartPage/StartPage";
 import PickQuiz from "./PickQuiz/PickQuiz";
 import Quiz from "./Quiz/Quiz";
@@ -31,6 +31,7 @@ const Application = (props: ApplicationProps) => {
           : props.windowSize.height
         : 500;
     setGifStyle({
+      display: "flex",
       height: smallestDimension * 0.9,
       width: smallestDimension * 0.9,
       borderRadius: "50%",
@@ -38,25 +39,27 @@ const Application = (props: ApplicationProps) => {
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
+      alignItems: "center",
+      justifyContent: "center",
     });
   }, [props.windowSize]);
 
   const pickQuiz = (quizType: string) => {
     switch (quizType) {
       case "job": {
-        setQuestions(Job);
+        setQuestions(quizzes[0].questions);
         setQuizType(quizType);
         setSiteState("quiz");
         break;
       }
       case "friends": {
-        setQuestions(Friends);
+        setQuestions(quizzes[1].questions);
         setQuizType(quizType);
         setSiteState("pick_name");
         break;
       }
       case "love": {
-        setQuestions(Love);
+        setQuestions(quizzes[2].questions);
         setQuizType(quizType);
         setSiteState("pick_name");
         break;
@@ -75,7 +78,13 @@ const Application = (props: ApplicationProps) => {
         return <PickQuiz pickQuiz={pickQuiz} />;
       }
       case "pick_name": {
-        return <InputName setName={setName} setSiteState={setSiteState} />;
+        return (
+          <InputName
+            setName={setName}
+            setSiteState={setSiteState}
+            name={name}
+          />
+        );
       }
       case "quiz": {
         return (
@@ -94,6 +103,8 @@ const Application = (props: ApplicationProps) => {
             setSiteState={setSiteState}
             answers={answers}
             setAnswers={setAnswers}
+            quizType={quizType}
+            name={name}
           />
         );
       }
@@ -115,6 +126,8 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     background: "#000000",
+    height: "100%",
+    width: "100%",
   },
 };
 
