@@ -5,7 +5,7 @@ interface ResultProps {
   answerString: string;
 }
 
-const ResultFriends = (props: ResultProps) => {
+const ResultLove = (props: ResultProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
@@ -15,11 +15,9 @@ const ResultFriends = (props: ResultProps) => {
   );
 
   useEffect(() => {
-    const getFriends = async () => {
+    const getLovers = async () => {
       try {
-        const res = await fetch(
-          "https://algo-future.vercel.app/api/getFriends"
-        );
+        const res = await fetch("https://algo-future.vercel.app/api/getLovers");
         const data = await res.json();
         setData(data);
         setIsLoading(false);
@@ -30,7 +28,7 @@ const ResultFriends = (props: ResultProps) => {
       }
     };
     if (data === null) {
-      getFriends();
+      getLovers();
     }
   }, []);
 
@@ -44,39 +42,39 @@ const ResultFriends = (props: ResultProps) => {
           answer_string: props.answerString,
         }),
       };
-      fetch("https://algo-future.vercel.app/api/addFriend", requestOptions)
+      fetch("https://algo-future.vercel.app/api/addLover", requestOptions)
         .then((response) => response.json())
         .then((data) => console.log(data));
     }
   }, [hasMutated]);
 
-  const getFriend = () => {
+  const getLover = () => {
     if (data.length === 0) {
       return <div>Der er ikke nogle tilgængelige svar</div>;
     }
 
-    const friends = data
-      .filter((friend: any) => friend?.name !== props.name)
-      .filter((friend: any) => friend?.answerString === props.answerString);
+    const lovers = data
+      .filter((lover: any) => lover?.name !== props.name)
+      .filter((lover: any) => lover?.answerString === props.answerString);
 
-    if (friends.length === 0) {
+    if (lovers.length === 0) {
       const random = randomNumber % data.length;
       return <h1 style={styles.job}>{data[random].name}</h1>;
     } else {
-      const random = randomNumber % friends.length;
-      return <h1 style={styles.job}>{friends[random].name}</h1>;
+      const random = randomNumber % lovers.length;
+      return <h1 style={styles.job}>{lovers[random].name}</h1>;
     }
   };
 
   return (
     <div className="result_container" style={styles.container}>
-      <h1 style={styles.subHeader}>Din fremtidige bedste ven er:</h1>
+      <h1 style={styles.subHeader}>Din fremtidige kærlighed er:</h1>
       {error !== null ? (
         <div>Error: {error}</div>
       ) : isLoading !== false ? (
         <div>Loading...</div>
       ) : (
-        getFriend()
+        getLover()
       )}
     </div>
   );
@@ -104,4 +102,4 @@ const styles = {
   },
 };
 
-export default ResultFriends;
+export default ResultLove;

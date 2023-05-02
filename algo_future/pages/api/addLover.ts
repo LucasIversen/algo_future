@@ -4,7 +4,7 @@ import clientPromise from "../../lib/mongo";
 type Data = {
   success: boolean;
   message: string;
-  friend?: {
+  lover?: {
     _id: string;
     name: string;
     answer_string: string;
@@ -18,22 +18,22 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const body = JSON.parse(req.body);
     const { name, answer_string } = body;
 
-    const existingFriend = await db.collection("friends").findOne({ name });
+    const existingLover = await db.collection("lovers").findOne({ name });
 
-    if (!existingFriend) {
-      const newFriend = await db.collection("friends").insertOne({
+    if (!existingLover) {
+      const newLover = await db.collection("lovers").insertOne({
         name,
         answer_string,
       });
       res.status(201).json({
         success: true,
-        message: "New friend inserted",
-        friend: newFriend.ops[0],
+        message: "New lover inserted",
+        lover: newLover.ops[0],
       });
     } else {
       res.status(400).json({
         success: false,
-        message: "A friend with the same name already exists",
+        message: "A lover with the same name already exists",
       });
     }
   } catch (e) {

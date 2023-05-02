@@ -41,6 +41,8 @@ const Application = (props: ApplicationProps) => {
       backgroundRepeat: "no-repeat",
       alignItems: "center",
       justifyContent: "center",
+      marginTop: "20px",
+      marginLeft: "20px",
     });
   }, [props.windowSize]);
 

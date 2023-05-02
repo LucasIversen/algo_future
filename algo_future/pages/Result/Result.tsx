@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ResultJob from "./ResultJob/ResultJob";
 import ResultFriends from "./ResultFriends/ResultFriends";
+import ResultLove from "./ResultLove/ResultLove";
 
 interface ResultProps {
   setSiteState: (siteState: string) => void;
@@ -11,6 +12,19 @@ interface ResultProps {
 }
 
 const Result = (props: ResultProps) => {
+  const [time, setTime] = useState(0);
+  const [isTimeUp, setIsTimeUp] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTime(time + 1);
+      if (time === 5) {
+        setIsTimeUp(true);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [time]);
+
   const getResultPage = () => {
     const procentage_a =
       props.answers?.filter((answer) => answer === "a").length /
@@ -44,13 +58,21 @@ const Result = (props: ResultProps) => {
     } else if (props.quizType === "friends") {
       return <ResultFriends answerString={answersString} name={props.name} />;
     } else {
-      return <></>;
+      return <ResultLove answerString={answersString} name={props.name} />;
     }
   };
 
+  if (!isTimeUp) {
+    return (
+      <div className="result_container" style={styles.loadingContainer}>
+        <h1 style={styles.subHeader}>Algoritmen udregner dine resultater</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="result_container" style={styles.container}>
-      <div>{getResultPage()}</div>
+      {getResultPage()}
     </div>
   );
 };
@@ -61,6 +83,22 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column" as "column",
+  },
+  loadingContainer: {
+    display: "flex",
+    width: "100%",
+    height: "100%",
+    borderRadius: "50%",
+    backgroundImage: 'url("/kode.gif")',
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  subHeader: {
+    color: "#fff",
+    fontSize: "36px",
+    fontWeight: "bold",
+    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+    marginBottom: "20px",
   },
 };
 
