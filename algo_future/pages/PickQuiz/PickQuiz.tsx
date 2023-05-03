@@ -13,12 +13,12 @@ const PickQuiz = (props: PickQuizProps) => {
     <div className="pick_quiz_container" style={styles.container}>
       <h1 style={styles.header}>Vælg en kategori</h1>
       <ButtonContainer
-        onClick={() => handleQuizButtonClick("job")}
-        name={"Job"}
-      />
-      <ButtonContainer
         onClick={() => handleQuizButtonClick("friends")}
         name={"Venskaber"}
+      />
+      <ButtonContainer
+        onClick={() => handleQuizButtonClick("job")}
+        name={"Job"}
       />
       <ButtonContainer
         onClick={() => handleQuizButtonClick("love")}
