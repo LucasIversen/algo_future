@@ -113,6 +113,14 @@ const Application = (props: ApplicationProps) => {
     }
   };
 
+  if (true) {
+    return (
+      <div>
+        <h1>Algoritmen tager en lur. Vend tilbage igen senere!</h1>
+      </div>
+    )
+  }
+
   return (
     <div className="container" style={styles.container}>
       <div className="weird_gif" style={gifStyle}>
