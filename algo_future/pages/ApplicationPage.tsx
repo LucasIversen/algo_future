@@ -113,12 +113,12 @@ const Application = (props: ApplicationProps) => {
     }
   };
 
-  if (true) {
+  if (false) {
     return (
       <div>
         <h1>Algoritmen tager en lur. Vend tilbage igen senere!</h1>
       </div>
-    )
+    );
   }
 
   return (
